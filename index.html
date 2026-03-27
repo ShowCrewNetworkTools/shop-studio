@@ -3,198 +3,331 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop Studio</title>
+  <title>Shop Studio — Etsy Seller Tool</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #fafaf8;
-      color: #2d2d2d;
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink:     #0f0f0f;
+      --ink2:    #444;
+      --ink3:    #888;
+      --border:  #e5e5e5;
+      --surface: #f8f7f5;
+      --white:   #ffffff;
+      --accent:  #2d6a4f;
+      --accent2: #40916c;
     }
-    header {
-      background: #fff;
-      border-bottom: 1px solid #e8e4df;
-      padding: 20px 40px;
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    header h1 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #2d2d2d;
-    }
-    header span {
-      font-size: 13px;
-      color: #888;
-    }
-    .hero {
-      max-width: 720px;
-      margin: 80px auto;
-      padding: 0 40px;
-    }
-    .badge {
-      display: inline-block;
-      background: #f0faf0;
-      color: #3a7d44;
-      border: 1px solid #c3e6c3;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 12px;
-      margin-bottom: 24px;
-      letter-spacing: 0.03em;
-    }
-    .hero h2 {
-      font-size: 38px;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      color: #1a1a1a;
-    }
-    .hero p {
-      font-size: 17px;
-      line-height: 1.75;
-      color: #555;
-      margin-bottom: 16px;
-    }
-    .features {
-      max-width: 720px;
-      margin: 0 auto 80px;
-      padding: 0 40px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .feature {
-      background: #fff;
-      border: 1px solid #e8e4df;
-      border-radius: 10px;
-      padding: 24px;
-    }
-    .feature-icon {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-    .feature h3 {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #1a1a1a;
-    }
-    .feature p {
-      font-size: 14px;
-      color: #777;
-      line-height: 1.6;
-    }
-    .trust {
-      max-width: 720px;
-      margin: 0 auto 80px;
-      padding: 32px 40px;
-      background: #fff;
-      border: 1px solid #e8e4df;
-      border-radius: 12px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .trust h3 {
+    .nav-logo {
       font-size: 16px;
       font-weight: 700;
-      margin-bottom: 16px;
-      color: #1a1a1a;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
     }
-    .trust ul {
-      list-style: none;
+    .nav-logo span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-left: 4px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+    .nav-tag {
+      font-size: 12px;
+      color: var(--ink3);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--ink);
+      color: var(--white);
+      padding: 120px 48px 100px;
+      text-align: center;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border: 1px solid rgba(64,145,108,0.4);
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin-bottom: 32px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      max-width: 700px;
+      margin: 0 auto 24px;
+      color: var(--white);
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: #b7e4c7;
+    }
+    .hero p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.55);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 48px;
+    }
+
+    /* ── Features ── */
+    .features-section {
+      padding: 100px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 56px;
+      max-width: 480px;
+      line-height: 1.2;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .feature {
+      background: var(--white);
+      padding: 40px;
+    }
+    .feature-number {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--ink3);
+      margin-bottom: 20px;
+    }
+    .feature h3 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .feature p {
+      font-size: 15px;
+      color: var(--ink2);
+      line-height: 1.65;
+    }
+
+    /* ── Privacy ── */
+    .privacy-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 48px;
+    }
+    .privacy-inner {
+      max-width: 1100px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 80px;
+      align-items: center;
     }
-    .trust li {
-      font-size: 14px;
-      color: #555;
+    .privacy-inner h2 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .privacy-inner p {
+      font-size: 15px;
+      color: var(--ink2);
+      line-height: 1.7;
+    }
+    .privacy-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .privacy-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      color: var(--ink2);
+      line-height: 1.5;
+    }
+    .privacy-list li::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: relative;
+      top: 2px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 40px 48px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: space-between;
+      gap: 24px;
     }
-    .trust li::before {
-      content: '✓';
-      color: #3a7d44;
+    .footer-logo {
+      font-size: 14px;
       font-weight: 700;
-      flex-shrink: 0;
+      color: var(--ink);
+      letter-spacing: -0.01em;
     }
-    footer {
-      border-top: 1px solid #e8e4df;
-      padding: 24px 40px;
-      text-align: center;
-      font-size: 12px;
-      color: #aaa;
+    .footer-disclaimer {
+      font-size: 11px;
+      color: var(--ink3);
+      max-width: 560px;
+      text-align: right;
       line-height: 1.6;
     }
-    @media (max-width: 600px) {
-      .features, .trust ul { grid-template-columns: 1fr; }
-      .hero h2 { font-size: 28px; }
-      header, .hero, .features, .trust { padding-left: 20px; padding-right: 20px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav, .hero, .features-section, .privacy-section, footer {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .features-grid { grid-template-columns: 1fr; }
+      .privacy-inner { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .footer-disclaimer { text-align: left; }
+      .divider { margin: 0 24px; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Shop Studio</h1>
-    <span>Personal Etsy seller tool</span>
-  </header>
+  <nav>
+    <a class="nav-logo" href="#">Shop Studio<span></span></a>
+    <span class="nav-tag">Personal Etsy Seller Tool</span>
+  </nav>
 
-  <div class="hero">
-    <div class="badge">For Etsy Sellers</div>
-    <h2>Your shop workflow,<br>all in one place.</h2>
-    <p>
-      Shop Studio is a private tool built for Etsy sellers who want
-      full control over their shop. Create and update listings, write
-      optimised titles and tags, track your sales, and respond to
-      buyer messages — without switching between tabs.
-    </p>
-    <p>
-      Connects securely to your Etsy shop via OAuth. Your data is
-      stored securely and never shared with any third party.
-    </p>
-  </div>
+  <section class="hero">
+    <div class="hero-label">Seller Productivity</div>
+    <h1>Your Etsy shop.<br><em>Fully under control.</em></h1>
+    <p>Shop Studio brings your listings, sales data, and buyer communication into one focused workspace — built around the way you actually work.</p>
+  </section>
 
-  <div class="features">
-    <div class="feature">
-      <div class="feature-icon">📋</div>
-      <h3>Listing Management</h3>
-      <p>Create, edit and publish product listings directly to your Etsy shop. Keep your catalogue organised and up to date.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🔍</div>
-      <h3>Titles &amp; Tags</h3>
-      <p>Write and refine listing titles, tags and descriptions to help your products reach the right buyers.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">📊</div>
-      <h3>Sales Tracking</h3>
-      <p>Read your shop's sales data to understand what's performing well and make informed decisions about your range.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">💬</div>
-      <h3>Buyer Messages</h3>
-      <p>Read and respond to buyer messages about their orders without breaking your workflow.</p>
-    </div>
-  </div>
+  <section class="features-section">
+    <div class="section-label">What it does</div>
+    <h2 class="section-title">Everything your shop needs, nothing it doesn't.</h2>
 
-  <div class="trust" style="max-width:720px;margin:0 auto 80px;padding:32px 40px;">
-    <h3>Built with privacy in mind</h3>
-    <ul>
-      <li>OAuth authentication — we never store your Etsy password</li>
-      <li>Your shop data is never sold or shared</li>
-      <li>Used solely for managing your own shop</li>
-      <li>No third-party data sharing</li>
-    </ul>
-  </div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-number">01</div>
+        <h3>Listing Management</h3>
+        <p>Create, edit and publish product listings directly to your Etsy shop. Keep your entire catalogue organised, consistent and up to date without switching tabs.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-number">02</div>
+        <h3>Titles &amp; Tags</h3>
+        <p>Write and refine listing titles, tags and descriptions with a clear, distraction-free editor. Make your products easier to find by the buyers who matter.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-number">03</div>
+        <h3>Sales Tracking</h3>
+        <p>Read your shop's sales data to understand what's performing and what isn't. Make informed decisions about your product range based on your own numbers.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-number">04</div>
+        <h3>Buyer Messages</h3>
+        <p>Read and respond to buyer messages about their orders without leaving your workflow. Stay on top of customer communication without losing focus.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="privacy-section">
+    <div class="privacy-inner">
+      <div>
+        <div class="section-label">Privacy &amp; Security</div>
+        <h2>Your shop data stays yours.</h2>
+        <p>Shop Studio connects to your Etsy shop via OAuth — the same secure standard used across the web. Your credentials and shop data are never stored externally or shared with any third party.</p>
+      </div>
+      <ul class="privacy-list">
+        <li>Connects via OAuth — your Etsy password is never stored</li>
+        <li>Used solely for managing your own shop</li>
+        <li>No data sold, shared, or transferred to third parties</li>
+        <li>Not distributed to any other sellers</li>
+      </ul>
+    </div>
+  </section>
 
   <footer>
-    The term "Etsy" is a trademark of Etsy, Inc. Shop Studio uses the Etsy API but is not endorsed or certified by Etsy, Inc.
-    <br>Shop Studio is an independent tool and is not affiliated with Etsy, Inc.
+    <div class="footer-logo">Shop Studio</div>
+    <div class="footer-disclaimer">
+      The term "Etsy" is a trademark of Etsy, Inc. Shop Studio uses the Etsy API but is not endorsed or certified by Etsy, Inc. Shop Studio is an independent tool and is not affiliated with Etsy, Inc.
+    </div>
   </footer>
 
 </body>
