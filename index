@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Studio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #fafaf8;
+      color: #2d2d2d;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e8e4df;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #2d2d2d;
+    }
+    header span {
+      font-size: 13px;
+      color: #888;
+    }
+    .hero {
+      max-width: 720px;
+      margin: 80px auto;
+      padding: 0 40px;
+    }
+    .badge {
+      display: inline-block;
+      background: #f0faf0;
+      color: #3a7d44;
+      border: 1px solid #c3e6c3;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      margin-bottom: 24px;
+      letter-spacing: 0.03em;
+    }
+    .hero h2 {
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+    }
+    .hero p {
+      font-size: 17px;
+      line-height: 1.75;
+      color: #555;
+      margin-bottom: 16px;
+    }
+    .features {
+      max-width: 720px;
+      margin: 0 auto 80px;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .feature {
+      background: #fff;
+      border: 1px solid #e8e4df;
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .feature-icon {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .feature h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+    .feature p {
+      font-size: 14px;
+      color: #777;
+      line-height: 1.6;
+    }
+    .trust {
+      max-width: 720px;
+      margin: 0 auto 80px;
+      padding: 32px 40px;
+      background: #fff;
+      border: 1px solid #e8e4df;
+      border-radius: 12px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .trust h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+    .trust ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .trust li {
+      font-size: 14px;
+      color: #555;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .trust li::before {
+      content: '✓';
+      color: #3a7d44;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    footer {
+      border-top: 1px solid #e8e4df;
+      padding: 24px 40px;
+      text-align: center;
+      font-size: 12px;
+      color: #aaa;
+      line-height: 1.6;
+    }
+    @media (max-width: 600px) {
+      .features, .trust ul { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 28px; }
+      header, .hero, .features, .trust { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Shop Studio</h1>
+    <span>Personal Etsy seller tool</span>
+  </header>
+
+  <div class="hero">
+    <div class="badge">For Etsy Sellers</div>
+    <h2>Your shop workflow,<br>all in one place.</h2>
+    <p>
+      Shop Studio is a private tool built for Etsy sellers who want
+      full control over their shop. Create and update listings, write
+      optimised titles and tags, track your sales, and respond to
+      buyer messages — without switching between tabs.
+    </p>
+    <p>
+      Connects securely to your Etsy shop via OAuth. Your data is
+      stored securely and never shared with any third party.
+    </p>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">📋</div>
+      <h3>Listing Management</h3>
+      <p>Create, edit and publish product listings directly to your Etsy shop. Keep your catalogue organised and up to date.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔍</div>
+      <h3>Titles &amp; Tags</h3>
+      <p>Write and refine listing titles, tags and descriptions to help your products reach the right buyers.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📊</div>
+      <h3>Sales Tracking</h3>
+      <p>Read your shop's sales data to understand what's performing well and make informed decisions about your range.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">💬</div>
+      <h3>Buyer Messages</h3>
+      <p>Read and respond to buyer messages about their orders without breaking your workflow.</p>
+    </div>
+  </div>
+
+  <div class="trust" style="max-width:720px;margin:0 auto 80px;padding:32px 40px;">
+    <h3>Built with privacy in mind</h3>
+    <ul>
+      <li>OAuth authentication — we never store your Etsy password</li>
+      <li>Your shop data is never sold or shared</li>
+      <li>Used solely for managing your own shop</li>
+      <li>No third-party data sharing</li>
+    </ul>
+  </div>
+
+  <footer>
+    The term "Etsy" is a trademark of Etsy, Inc. Shop Studio uses the Etsy API but is not endorsed or certified by Etsy, Inc.
+    <br>Shop Studio is an independent tool and is not affiliated with Etsy, Inc.
+  </footer>
+
+</body>
+</html>
